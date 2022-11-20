@@ -12,6 +12,8 @@ export type TransactionData = {
     creditedAccountId: number
     value: number
     createdAt: string
+    accounts_accountsTotransactions_creditedAccountId: any
+    accounts_accountsTotransactions_debitedAccountId: any
 }
 
 interface Props {
@@ -46,9 +48,9 @@ export default function MyStatement() {
 
     function showTransaction(transaction: TransactionData) {
         return transaction.creditedAccountId === id ? (
-            <div className="transaction" key={transaction.id}><Date>{transaction.createdAt.slice(0, 10)}</Date><div><Description>{transaction.debitedAccountId}</Description> <Value type='deposit'>{transaction.value.toFixed(2).replace(".", ",")}</Value></div></div>
+            <div className="transaction" key={transaction.id}><Date>{transaction.createdAt.slice(0, 10)}</Date><Username>@{transaction.accounts_accountsTotransactions_debitedAccountId.users[0].username}</Username> <Value type='deposit'>{transaction.value.toFixed(2).replace(".", ",")}</Value></div>
         ) : (
-            <div className="transaction" key={transaction.id}><Date>{transaction.createdAt.slice(0, 10)}</Date><div><Description>{transaction.creditedAccountId}</Description> <Value type='withdraw'>{transaction.value.toFixed(2).replace(".", ",")}</Value></div></div>
+            <div className="transaction" key={transaction.id}><Date>{transaction.createdAt.slice(0, 10)}</Date><Username>@{transaction.accounts_accountsTotransactions_creditedAccountId.users[0].username}</Username> <Value type='withdraw'>{transaction.value.toFixed(2).replace(".", ",")}</Value></div>
         )
     }
 
@@ -150,6 +152,7 @@ const Box = styled.div<Centered>`
     .transaction{
         width: 300px;
         justify-content: space-between;
+        padding: 5px;
     }
     div{
         display: flex;
@@ -169,8 +172,9 @@ const Date = styled.span`
 
 `
 
-const Description = styled.div`
+const Username = styled.div`
     color: #000000;
+    margin-left: 20px;
 `
 
 const Value = styled.span<Props>`

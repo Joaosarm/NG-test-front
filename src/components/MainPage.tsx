@@ -81,7 +81,7 @@ const Header = styled.header`
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-bottom: 30px;
+    margin: 10px 0 30px 0;
 `
 
 const BalanceBox = styled.div`
