@@ -1,4 +1,4 @@
-import { useState, useEffect, useContext } from "react";
+import { useState, useContext } from "react";
 import styled from "styled-components";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
@@ -21,7 +21,7 @@ export default function NewTransaction(){
             alert("Transferência postada com sucesso");
             navigate('/main-page');
         }).catch((e)=>{
-            alert('Erro ao receber dados do extrato');
+            alert('Erro ao enviar Transferência');
         });
     }
     return(

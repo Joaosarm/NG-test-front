@@ -11,7 +11,7 @@ export default function MainPage() {
     const { token, setToken } = useContext(UserContext);
     const { user } = useContext(UserContext);
     const [balance, setBalance] = useState(0);
-    const [hidePassword, setHidePassword] = useState(true);
+    const [hideBalance, setHideBalance] = useState(true);
     const navigate = useNavigate();
 
 
@@ -39,16 +39,16 @@ export default function MainPage() {
             <Header>Olá, @{user} <IonIcon name="exit-outline" onClick={logOff} /></Header>
             <BalanceBox>
                 <div className="balance">
-                    <h3>Saldo: R${hidePassword ? '...' : balance}</h3>
+                    <h3>Saldo: R${hideBalance ? '...' : balance}</h3>
                     {
-                        hidePassword ?
-                            <div className='show-and-hide-password'
-                                onClick={() => setHidePassword(!hidePassword)} >
+                        hideBalance ?
+                            <div className='show-and-hide-balance'
+                                onClick={() => setHideBalance(!hideBalance)} >
                                 <IonIcon name="eye-outline" />
                             </div>
                             :
-                            <div className='show-and-hide-password'
-                                onClick={() => setHidePassword(!hidePassword)} >
+                            <div className='show-and-hide-balance'
+                                onClick={() => setHideBalance(!hideBalance)} >
                                 <IonIcon name="eye-off-outline" />
                             </div>
                     }

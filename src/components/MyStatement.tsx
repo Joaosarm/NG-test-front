@@ -27,8 +27,6 @@ export default function MyStatement() {
     const { token } = useContext(UserContext);
     const { user } = useContext(UserContext);
     const { id } = useContext(UserContext);
-    const [balance, setBalance] = useState(0);
-    const [hidePassword, setHidePassword] = useState(true);
     const [transactions, setTransactions] = useState([]);
     const navigate = useNavigate();
 
@@ -36,16 +34,12 @@ export default function MyStatement() {
     useEffect(() => {
         (async () => {
             try {
-                axios.get("http://localhost:5000/balance", {
-                    headers: { Authorization: `Bearer ${token}` }
-                }).then((response) => setBalance(response.data.balance));
-
                 axios.get("http://localhost:5000/transactions", { headers: { Authorization: `Bearer ${token}` } })
                     .then((response) => {
                         setTransactions(response.data);
                     }).catch(e => console.log(e));
             } catch (e) {
-                alert("Erro ao receber saldo!");
+                alert("Erro ao receber extrato!");
             }
         })();
     }, [token])
