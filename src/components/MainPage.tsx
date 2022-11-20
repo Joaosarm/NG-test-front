@@ -55,7 +55,7 @@ export default function MainPage() {
                 </div>
             </BalanceBox>
             <Buttons>
-                <Button onClick={() => navigate('/my-statement')}><IonIcon name="add-circle-outline" /><p>Checar</p> <p>Extrato</p></Button>
+                <Button onClick={() => navigate('/my-statement')}><IonIcon name="document-text-outline" /><p>Checar</p> <p>Extrato</p></Button>
                 <Button onClick={() => navigate('/new-transaction')}><IonIcon name="add-circle-outline" /><p>Nova</p> <p>Transferência</p></Button>
             </Buttons>
         </Container>

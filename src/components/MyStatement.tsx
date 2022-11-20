@@ -45,8 +45,7 @@ export default function MyStatement() {
                         setTransactions(response.data);
                     }).catch(e => console.log(e));
             } catch (e) {
-                alert("Erro ao receber dados");
-                console.log(e);
+                alert("Erro ao receber saldo!");
             }
         })();
     }, [token])
@@ -96,9 +95,9 @@ export default function MyStatement() {
                 <Button onClick={() => getAllTransactions()}><p>Todas</p></Button>
                 <Button onClick={() => getCreditedTransactions()}><p>Créditos</p></Button>
             </Buttons>
-            <Box centered='left'>{transactions.map((transaction) => showTransaction(transaction))}<Total><strong>SALDO</strong> {balance.toFixed(2).replace(".", ",")}</Total></Box>
+            <Box centered='left'>{transactions.map((transaction) => showTransaction(transaction))}</Box>
             <Buttons>
-                <Button onClick={() => navigate('/main-page')}><p>Voltar</p></Button>
+                <ReturnButton onClick={() => navigate('/main-page')}><IonIcon name="caret-back-outline"/>Voltar</ReturnButton>
             </Buttons>
         </Container>
     )
@@ -112,6 +111,16 @@ const Container = styled.div`
     align-items: center;
     flex-direction: column;
     justify-content: space-between;
+    button{
+        cursor: pointer;
+        background: white;
+        border: none;
+        border-radius: 5px;
+        font-size: 17px;
+        font-family: 'Raleway', cursive;
+        font-weight: 700;
+        color: black;
+    }
 `;
 
 const Header = styled.header`
@@ -175,28 +184,16 @@ const Value = styled.span<Props>`
     text-align: left;
 `
 
-const Total = styled.p`
-    position: sticky;
-    bottom: 0px;
-    padding:10px 0px;
-    rigth:10px;
-    display:flex;
-    width:300px;
-    background:#FFFFFF;
-    justify-content: space-between;
-    color: black;
-    strong{
-        font-weight: 700;
-        color: #000000;
-    }
-`
-
-
 const Buttons = styled.div`
     padding: 10px;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
 `
 
 const Button = styled.button`
+    display: flex;
+    align-items: center;
     height: 40px;
     width: 100px;
     padding: 10px;
@@ -205,7 +202,6 @@ const Button = styled.button`
     border-radius: 5px;
     margin: 5px;   
     color: black;
-    text-align: left;
     font-size: 17px;
     font-family: 'Raleway', cursive;
     font-weight: 700;
@@ -215,4 +211,14 @@ const Button = styled.button`
         font-size: 25px;
     }
     cursor: pointer;
+`
+
+const ReturnButton = styled.button`
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 40px;
+    width: 100px;
+    padding: 10px;
+    margin: 5px;   
 `

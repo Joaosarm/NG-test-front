@@ -10,6 +10,7 @@ import Coisa from "./Coisa";
 
   
 import { UserContext } from "../context/UserContext";
+import NewTransaction from "./NewTransaction";
 
   
 function App() {
@@ -25,7 +26,7 @@ function App() {
             <Route path="/sign-up" element={<SignUpPage />} />
             <Route path="/main-page" element={<MainPage />} />
             <Route path="/my-statement" element={<MyStatement />} />
-            {/* <Route path="/new-entry" element={<NewEntry />} /> */}
+            <Route path="/new-transaction" element={<NewTransaction />} />
             <Route path="/coisa" element={<Coisa />} />
             </Routes>
         </BrowserRouter>
