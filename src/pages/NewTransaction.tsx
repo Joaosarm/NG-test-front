@@ -4,7 +4,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import IonIcon from '@reacticons/ionicons';
 
-import Input from "./Input";
+import Input from "../components/Input";
 
 import { UserContext } from "../context/UserContext";
 

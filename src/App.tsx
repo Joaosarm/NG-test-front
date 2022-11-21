@@ -1,25 +1,34 @@
-import React from 'react';
-import logo from './logo.svg';
+import {BrowserRouter,Routes,Route} from "react-router-dom";
+import {useState} from "react";
+  
+import LoginPage from "./pages/LoginPage";
+import MainPage from "./pages/MainPage";
+import SignUpPage from "./pages/SignUpPage";
+import MyStatement from "./pages/MyStatement";
+import NewTransaction from "./pages/NewTransaction";
 
+  
+import { UserContext } from "./context/UserContext";
+
+  
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+    const [user, setUser] = useState<string>('');
+    const [token, setToken] = useState<string>('');
+    const [id, setId] = useState<number>(0);
 
+    return (
+        <UserContext.Provider value= {{ user, token, id, setUser, setToken, setId }}>
+        <BrowserRouter>
+            <Routes>
+            <Route path="/" element={<LoginPage />} />
+            <Route path="/sign-up" element={<SignUpPage />} />
+            <Route path="/main-page" element={<MainPage />} />
+            <Route path="/my-statement" element={<MyStatement />} />
+            <Route path="/new-transaction" element={<NewTransaction />} />
+            </Routes>
+        </BrowserRouter>
+        </UserContext.Provider>
+    );
+}
+  
 export default App;

@@ -78,9 +78,14 @@ export default function MyStatement() {
     return transactions.length === 0 ? (
         <Container>
             <Header> @{user}, aqui vai o seu extrato: </Header>
+            <Buttons>
+                <Button onClick={() => getDebitedTransactions()}><p>Débitos</p></Button>
+                <Button onClick={() => getAllTransactions()}><p>Todas</p></Button>
+                <Button onClick={() => getCreditedTransactions()}><p>Créditos</p></Button>
+            </Buttons>
             <Box centered='center'><h3>Não há registros de entradas ou saídas</h3></Box>
             <Buttons>
-                <Button onClick={() => navigate('/main-page')}><p>Voltar</p></Button>
+                <ReturnButton onClick={() => navigate('/main-page')}><IonIcon name="caret-back-outline"/>Voltar</ReturnButton>
             </Buttons>
         </Container>
     ) : (

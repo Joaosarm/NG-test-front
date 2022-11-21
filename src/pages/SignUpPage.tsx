@@ -1,40 +1,35 @@
-import {useState, useContext} from "react";
+import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import axios from "axios";
 
-import {UserContext} from "../context/UserContext";
+import Button from "../components/Button";
+import Input from "../components/Input";
 
-import Button from "./Button";
-import Input from "./Input";
-
-export default function LoginPage() {
+export default function SignUpPage() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const {setToken, setUser, setId} = useContext(UserContext);
+  const navigate = useNavigate();
 
-  const navigator = useNavigate();
-
-  async function log() {
+  async function register() {
     try {
-      const response = await axios.post("http://localhost:5000/sign-in", {username,password});
-      setToken(response.data.token);
-      setUser(response.data.username);
-      setId(response.data.id);
-      navigator("/main-page");
-    } catch (error){
-      console.log(error);
-      alert("Username ou senha errado!");
+      await axios.post("http://localhost:5000/sign-up", {username,password});
+      alert("Cadastro feito com sucesso!");
+      navigate("/");
+    } catch(error) {
+      alert("Ops, ocorreu um erro!");
+      console.error("o erro foi..",  error);
     }
   }
 
   return (
     <Container>
-        <Title>NG.Cash</Title>
+        <Title>Realizar Cadastro</Title>
         <Input type="text" value={username} onChange={(e) => setUsername(e.target.value)} placeholder="Username" />
         <Input type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Senha" />
-        <Button onClick={log}>Entrar</Button>
-        <StyledLink to="/sign-up">Não possui uma conta? Cadastre-se</StyledLink>
+        {/* <Input type="password" value={confirmPassword} onChange={(e) => setconfirmPassword(e.target.value)} placeholder="Confirme a Senha" /> */}
+        <Button onClick={register}>Cadastrar</Button>
+        <StyledLink to="/">Já possui uma conta? Faça login</StyledLink>
     </Container>
   );
 }
@@ -55,6 +50,7 @@ const Title = styled.h1`
     font-size: 32px;
     color: #FFFFFF;
     padding: 24px;
+    width: 170px;
 `
 
 const StyledLink = styled(Link)`
